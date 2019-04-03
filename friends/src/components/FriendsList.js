@@ -13,7 +13,10 @@ class FriendsList extends Component {
   componentDidMount() {
     axios.get('http://localhost:5000/friends')
       .then( (res) => {
-        console.log('RESPONSE:', res);
+        console.log('RESPONSE.DATA:', res.data);
+        this.setState({
+          friends: res.data,
+        })
       })
       .catch( (error) => {
         console.error('Server Error', error);
@@ -23,7 +26,11 @@ class FriendsList extends Component {
   render() {
     return (
       <div>
-        List here
+        {this.state.friends.map( (friend) => {
+          return (
+            <div key={friend.id}>{friend.name}</div>
+          )
+        })}
       </div>
     )
   }
