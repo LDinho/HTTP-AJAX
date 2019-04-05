@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Friend from './Friend';
+import FriendForm from './FriendForm';
 
 class FriendsList extends Component {
   constructor(props) {
@@ -24,9 +25,14 @@ class FriendsList extends Component {
       });
   }
 
+  updateFriends = newFriends => {
+    this.setState({ friends: newFriends });
+  };
+
   render() {
     return (
       <section className="friends-list">
+        <FriendForm updateFriends={this.updateFriends} />
         {this.state.friends.map( (friend) => {
           return <Friend key={friend.id} friend={friend}/>
         })}
