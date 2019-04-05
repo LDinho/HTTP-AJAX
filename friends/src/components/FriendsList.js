@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Friend from './Friend';
-import FriendForm from './FriendForm';
+// import FriendForm from './FriendForm';
 
 class FriendsList extends Component {
   constructor(props) {
@@ -32,7 +33,20 @@ class FriendsList extends Component {
   render() {
     return (
       <section className="friends-list">
-        <FriendForm updateFriends={this.updateFriends} />
+        {/*<FriendForm updateFriends={this.updateFriends} />*/}
+
+        <Link to="/">
+          <div className="button-home">
+            Home
+          </div>
+        </Link>
+
+        <Link to="/new">
+          <div className="button-add">
+            Add New Friend
+          </div>
+        </Link>
+
         {this.state.friends.reverse().map( (friend) => {
           return <Friend key={friend.id}
                          friend={friend}

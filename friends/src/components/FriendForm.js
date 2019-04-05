@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class FriendForm extends Component {
   constructor(props) {
@@ -39,16 +40,14 @@ class FriendForm extends Component {
     }
 
     axios.post("http://localhost:5000/friends", this.state.newFriend)
-      .then(response => {
-        this.props.updateFriends(response.data);
-
-      })
       .then(() =>{
-        this.setState({newFriend: {
-          name: '',
-          age: '',
-          email: '',
-        }})
+        this.setState({
+          newFriend: {
+            name: '',
+            age: '',
+            email: '',
+          }
+        })
       })
       .catch(err => console.log(err));
   };
@@ -56,7 +55,15 @@ class FriendForm extends Component {
   render () {
     return (
      <div className="friend-form">
+
+       <Link to="/friends">
+         <div className="button-back">
+            Back
+         </div>
+       </Link>
+
        <h2>Add a new friend</h2>
+
        <form onSubmit={this.handleSubmit}>
          <label> Name:
          <input
