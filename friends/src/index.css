@@ -12,3 +12,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.app-header {
+  text-align: center;
+}
+
+.friends-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.friend-card {
+  border: 1px solid lightgray;
+  padding: 1%;
+  width: 50%;
+}
