@@ -33,8 +33,8 @@ class FriendsList extends Component {
     return (
       <section className="friends-list">
         <FriendForm updateFriends={this.updateFriends} />
-        {this.state.friends.map( (friend) => {
-          return <Friend key={friend.id} friend={friend}/>
+        {this.state.friends.reverse().map( (friend) => {
+          return <Friend key={friend.id} friend={friend} />
         })}
       </section>
     )

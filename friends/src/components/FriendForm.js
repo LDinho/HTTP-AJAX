@@ -11,6 +11,7 @@ class FriendForm extends Component {
         age: '',
         email: '',
       },
+      hasErrors: false,
     }
   }
 
@@ -26,6 +27,17 @@ class FriendForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
+    const {newFriend: {name, age, email}} = this.state;
+
+    if (!name || !age || !email) {
+      this.setState({hasErrors: true});
+      return;
+    }
+
+    if (this.state.hasErrors) {
+      this.setState({hasErrors: false});
+    }
+
     axios.post("http://localhost:5000/friends", this.state.newFriend)
       .then(response => {
         this.props.updateFriends(response.data);
@@ -39,7 +51,6 @@ class FriendForm extends Component {
         }})
       })
       .catch(err => console.log(err));
-    // need to prevent adding empty friend
   };
 
   render () {
@@ -56,7 +67,6 @@ class FriendForm extends Component {
            value={this.state.newFriend.name}
          />
          </label>
-         <div className="separator-line" />
 
          <label> Age:
          <input
@@ -67,7 +77,6 @@ class FriendForm extends Component {
            value={this.state.newFriend.age}
          />
          </label>
-         <div className="separator-line" />
 
          <label> Email:
          <input
@@ -78,7 +87,12 @@ class FriendForm extends Component {
            value={this.state.newFriend.email}
          />
          </label>
-         <div className="separator-line" />
+         { this.state.hasErrors &&
+           <p>
+             Please fill out all fields!
+           </p>
+         }
+
          <button type="submit">Add New Friend</button>
        </form>
      </div>
