@@ -38,6 +38,13 @@ code {
   margin-bottom: 20px;
 }
 
+.form-edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
 .button-list {
   font-size: 26px;
   border: 1px solid gray;
